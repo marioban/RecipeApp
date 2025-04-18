@@ -28,9 +28,12 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
+                                .requestMatchers("/**").permitAll()
+                        /*
                         .requestMatchers("/mvc/recipe").permitAll()
                         .requestMatchers("/mvc/searchRecipe/**").hasAnyRole(USER_ROLE, ADMIN_ROLE)
                         .requestMatchers("/mvc/saveRecipe", "mvc/deleteRecipe", "mvc/editRecipe" ).hasRole(ADMIN_ROLE)
+                         */
                 )
                 .formLogin(withDefaults());
 

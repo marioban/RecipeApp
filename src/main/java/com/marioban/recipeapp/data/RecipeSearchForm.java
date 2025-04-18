@@ -15,4 +15,10 @@ public class RecipeSearchForm {
     private Integer minKcal;
     private BigDecimal priceMin;
     private BigDecimal priceMax;
+    private Integer minProtein;
+    private Integer maxProtein;
+    private Integer minCarbs;
+    private Integer maxCarbs;
+    private Integer minFats;
+    private Integer maxFats;
 }

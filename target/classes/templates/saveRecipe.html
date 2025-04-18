@@ -70,14 +70,11 @@
         <!-- CheckBox lista za Allergies -->
         <div class="col-md-12">
           <label class="form-label">Allergies</label>
-          <div th:each="allergy : ${allergyList}">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox"
-                     th:name="allergies"
-                     th:value="${allergy.id}"
-                     th:checked="${#lists.contains(recipe.allergies, allergy)}">
-              <label class="form-check-label" th:text="${allergy.type}"></label>
-            </div>
+          <div class="form-check" th:each="allergy : ${allergyList}">
+            <input class="form-check-input" type="checkbox" th:id="${'allergy-' + allergy.id}"
+                   th:name="allergyIds" th:value="${allergy.id}"
+                   th:checked="${recipe.allergies.contains(allergy)}">
+            <label class="form-check-label" th:for="${'allergy-' + allergy.id}" th:text="${allergy.type}">Allergy</label>
           </div>
         </div>
 

@@ -37,6 +37,23 @@ public class StartController {
         return "recipe";
     }
 
+    @PostMapping("/saveRecipe")
+    public String saveRecipe(@ModelAttribute Recipe recipe, Model model) {
+        if (recipe.getId() == null) {
+            recipeService.saveRecipe(recipe);
+        } else {
+            recipeService.editRecipe(recipe.getId(), recipe);
+        }
+        return "redirect:/mvc/recipe";
+    }
+
+    @PostMapping("/saveRecipeWithAllergies")
+    public String saveRecipe(@ModelAttribute Recipe recipe,
+                             @RequestParam(value = "allergyIds", required = false) List<Integer> allergyIds) {
+        //recipeService.saveRecipeWithAllergies(recipe, allergyIds);
+        return "redirect:/mvc/recipe";
+    }
+
     @GetMapping("/saveRecipe")
     public String initializeSaveNewRecipeScreen(Model model) {
         model.addAttribute("recipeCategoryList", categoryService.findAll());
@@ -53,22 +70,7 @@ public class StartController {
         return "saveRecipe";
     }
 
-    @PostMapping("/saveRecipe")
-    public String saveRecipe(@ModelAttribute Recipe recipe, Model model) {
-        if (recipe.getId() == null) {
-            recipeService.saveRecipe(recipe);
-        } else {
-            recipeService.editRecipe(recipe.getId(), recipe);
-        }
-        return "redirect:/mvc/recipe";
-    }
 
-    @PostMapping("/saveRecipe")
-    public String saveRecipe(@ModelAttribute Recipe recipe,
-                             @RequestParam(value = "allergyIds", required = false) List<Integer> allergyIds) {
-        //recipeService.saveRecipeWithAllergies(recipe, allergyIds);
-        return "redirect:/mvc/recipe";
-    }
 
 
     @PostMapping("/deleteRecipe")
