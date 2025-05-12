@@ -9,9 +9,10 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Food {
-    private Integer id;
-    private String name;
-    private String kcal;
-    private BigDecimal price;
+public class RecipeSearchForm {
+    private String recipeName;
+    private Integer maxKcal;
+    private Integer minKcal;
+    private BigDecimal priceMin;
+    private BigDecimal priceMax;
 }
